@@ -19,7 +19,7 @@ Unlike traditional python/go recon scripts, Subdomainizer runs entirely in your 
 * **Data Export:** One-click export of discovered subdomains to a formatted `.csv` file for easy import into other tools (like httpx, nuclei).
 * **Hacker Aesthetic:** Clean, terminal-inspired dark mode UI with interactive logs.
 
-**Start Scanning -> ** [https://subdomainizer.vercel.app/](https://subdomainizer.vercel.app/)
+**Start Scanning ->** [https://subdomainizer.vercel.app/](https://subdomainizer.vercel.app/)
 ---
 
 ![Screenshot](Screenshot.png)
