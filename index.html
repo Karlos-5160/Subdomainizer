@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subdomain Enumerator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>SUBDOMAINIZER - V2.0</h1>
+            <p class="status">STATUS: <span id="system-status">ONLINE</span></p>
+        </header>
+
+        <main>
+            <div class="input-group">
+                <label for="domain-input">TARGET_DOMAIN:</label>
+                <input type="text" id="domain-input" placeholder="example.com" autocomplete="off">
+                <button id="scan-btn">INITIATE_SCAN</button>
+            </div>
+
+            <!-- Advanced Controls -->
+            <div class="advanced-controls">
+                <button id="advanced-toggle" class="outline-btn">MORE_ADVANCED_SCAN / CONFIG</button>
+            </div>
+
+            <!-- Configuration Panel (Hidden by Default) -->
+            <div class="config-panel hidden" id="config-panel">
+                <div class="config-content">
+                    <div class="config-group">
+                        <h3>DATA_SOURCES (SCRAPING / API / ARCHIVE)</h3>
+                        <label><input type="checkbox" id="source-crtsh" checked> CRT.SH (Certificate Logs)</label>
+                        <label><input type="checkbox" id="source-wayback" checked> Wayback Machine (Archive)</label>
+                        <label><input type="checkbox" id="source-vt" checked> VirusTotal (API)</label>
+                        <label><input type="checkbox" id="source-otx" checked> AlienVault OTX (API)</label>
+                        <label><input type="checkbox" id="source-hackertarget" checked> HackerTarget (API)</label>
+                        <label><input type="checkbox" id="source-merklemap" checked> MerkleMap (API)</label>
+                        <label><input type="checkbox" id="source-rapiddns" checked> RapidDNS (Direct)</label>
+                        <label><input type="checkbox" id="source-c99"> C99 (API Key Required)</label>
+                        <label><input type="checkbox" id="source-netcraft"> Netcraft (Scrape)</label>
+                        <label><input type="checkbox" id="source-nmmapper"> NMMapper (Scrape)</label>
+                        <label><input type="checkbox" id="source-hunter"> Hunter.how (API)</label>
+                        <label><input type="checkbox" id="source-censys"> Censys (API)</label>
+                        <label><input type="checkbox" id="source-fofa"> Fofa (API)</label>
+                        <label><input type="checkbox" id="source-zoomeye"> ZoomEye (API)</label>
+                    </div>
+                    <div class="config-group">
+                        <h3>API_KEYS (REQUIRED FOR SOME SOURCES)</h3>
+                        <input type="password" id="vt-api-key" placeholder="VIRUSTOTAL_API_KEY">
+                        <input type="password" id="otx-api-key" placeholder="ALIENVAULT_OTX_API_KEY" style="margin-top: 0.5rem;">
+                        <input type="password" id="ht-api-key" placeholder="HACKERTARGET_API_KEY" style="margin-top: 0.5rem;">
+                        <input type="password" id="c99-api-key" placeholder="C99_API_KEY" style="margin-top: 0.5rem;">
+                        <input type="password" id="hunter-api-key" placeholder="HUNTER_API_KEY" style="margin-top: 0.5rem;">
+                        <input type="password" id="censys-api-secret" placeholder="CENSYS_API_KEY" style="margin-top: 0.5rem;">
+                        <input type="password" id="fofa-api-key" placeholder="FOFA_API_KEY" style="margin-top: 0.5rem;">
+                        <input type="password" id="zoomeye-api-key" placeholder="ZOOMEYE_API_KEY" style="margin-top: 0.5rem;">
+                        <p style="font-size: 0.8rem; color: #888; margin-top: 0.5rem;">* Keys are sent directly to the respective APIs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="title">terminal_output.log</span>
+                </div>
+                <div class="terminal-content" id="terminal-output">
+                    <p class="log-entry">> System ready...</p>
+                    <p class="log-entry">> Waiting for target...</p>
+                </div>
+            </div>
+
+            <div class="results-section hidden" id="results-section">
+                <div class="results-header">
+                    <h2>DISCOVERED_SUBDOMAINS [<span id="result-count">0</span>]</h2>
+                    <button id="export-btn">EXPORT_DATA</button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>SUBDOMAIN</th>
+                                <th>STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="results-body">
+                            <!-- Results will be injected here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Recon is the Key.</p>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
