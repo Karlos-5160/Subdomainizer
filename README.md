@@ -22,6 +22,7 @@ Unlike traditional python/go recon scripts, Subdomainizer runs entirely in your 
 ---
 
 ![Screenshot](Screenshot.png)
+![Screenshot](Screenshot2.png)
 
 ### 🚀 Usage Guide
 
