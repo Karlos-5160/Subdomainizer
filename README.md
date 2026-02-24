@@ -1,6 +1,6 @@
 # SUBDOMAINIZER - V2.0 🌐
 
-**Live Demo:** [https://subdomainizer.vercel.app/](https://subdomainizer.vercel.app/)
+*Live Demo:* [subdomainizer.vercel.app](https://subdomainizer.vercel.app/)
 
 A lightweight, extremely fast, and completely **client-side** subdomain enumeration tool built for security researchers and bug bounty hunters. 
 
