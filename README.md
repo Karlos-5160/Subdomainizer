@@ -1,7 +1,5 @@
 # SUBDOMAINIZER - V2.0 🌐
 
-**Live Demo:** [https://subdomainizer.vercel.app/](https://subdomainizer.vercel.app/)
-
 A lightweight, extremely fast, and completely **client-side** subdomain enumeration tool built for security researchers and bug bounty hunters. 
 
 Unlike traditional python/go recon scripts, Subdomainizer runs entirely in your browser using Vanilla JavaScript. It aggregates OSINT data from over 14 different sources, automatically removes duplicates, and lets you export your target scope to CSV in seconds.
@@ -21,6 +19,7 @@ Unlike traditional python/go recon scripts, Subdomainizer runs entirely in your 
 * **Data Export:** One-click export of discovered subdomains to a formatted `.csv` file for easy import into other tools (like httpx, nuclei).
 * **Hacker Aesthetic:** Clean, terminal-inspired dark mode UI with interactive logs.
 
+**Start Scanning -> ** [https://subdomainizer.vercel.app/](https://subdomainizer.vercel.app/)
 ---
 
 ![Screenshot](Screenshot.png)
