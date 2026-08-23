@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sourceCensys = document.getElementById('source-censys');
     const sourceFofa = document.getElementById('source-fofa');
     const sourceZoomEye = document.getElementById('source-zoomeye');
+    const sourceCrtName = document.getElementById('source-crtname');
 
     // Credentials
     const vtApiKeyInput = document.getElementById('vt-api-key');
@@ -150,6 +151,26 @@ document.addEventListener('DOMContentLoaded', () => {
             return Array.from(subs);
         } catch (e) {
             log(`[MERKLEMAP] Error: ${e.message}`, 'error');
+            return [];
+        }
+    };
+
+    const fetchCrtName = async (domain) => {
+        log(`[CRT.NAME] Fetching...`, 'info');
+        try {
+            const url = `https://crt.name/v1/search?apex=${domain}`;
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`HTTP Error ${response.status}`);
+            const text = await response.text();
+            const subs = new Set();
+            text.split('\n').forEach(line => {
+                const s = line.trim();
+                if (s && s.includes(domain) && !s.includes('*')) subs.add(s);
+            });
+            log(`[CRT.NAME] Found ${subs.size} results.`, 'success');
+            return Array.from(subs);
+        } catch (e) {
+            log(`[CRT.NAME] Error: ${e.message}`, 'error');
             return [];
         }
     };
@@ -462,6 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (sourceCensys.checked) promises.push(fetchCensys(domain, censysApiSecretInput.value.trim()));
         if (sourceFofa.checked) promises.push(fetchFofa(domain, fofaApiKeyInput.value.trim()));
         if (sourceZoomEye.checked) promises.push(fetchZoomEye(domain, zoomeyeApiKeyInput.value.trim()));
+        if (sourceCrtName.checked) promises.push(fetchCrtName(domain));
 
         const results = await Promise.allSettled(promises);
 
