@@ -162,12 +162,11 @@ document.addEventListener('DOMContentLoaded', () => {
             let response;
 
             if (window.location.protocol === 'https:') {
-                // On HTTPS (e.g. Vercel), direct HTTP fetch is blocked as mixed content.
-                // allorigins.win reliably proxies HTTP-only targets and returns raw text.
-                const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl)}`;
-                response = await fetch(proxyUrl);
+                // On HTTPS (Vercel), direct HTTP fetch is blocked (mixed content).
+                // Route through corsproxy.io — same proxy used by Netcraft/NMMapper.
+                response = await bgProxyFetch(apiUrl);
             } else {
-                // On HTTP (localhost), fetch directly — no mixed content restriction.
+                // On HTTP (localhost), fetch directly.
                 response = await fetch(apiUrl);
             }
 
