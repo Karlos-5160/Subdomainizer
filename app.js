@@ -158,16 +158,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const fetchCrtName = async (domain) => {
         log(`[CRT.NAME] Fetching...`, 'info');
         try {
-            const apiUrl = `http://crt.name/v1/search?apex=${domain}`;
             let response;
 
             if (window.location.protocol === 'https:') {
-                // On HTTPS (Vercel), direct HTTP fetch is blocked (mixed content).
-                // Route through corsproxy.io — same proxy used by Netcraft/NMMapper.
-                response = await bgProxyFetch(apiUrl);
+                // On Vercel (HTTPS): use our own serverless proxy at /api/crtname
+                // This fetches crt.name server-side — no CORS, no mixed-content, no IP blocks.
+                response = await fetch(`/api/crtname?domain=${encodeURIComponent(domain)}`);
             } else {
-                // On HTTP (localhost), fetch directly.
-                response = await fetch(apiUrl);
+                // On localhost (HTTP/file): fetch https://crt.name directly.
+                response = await fetch(`https://crt.name/v1/search?apex=${domain}`);
             }
 
             if (!response.ok) throw new Error(`HTTP Error ${response.status}`);
