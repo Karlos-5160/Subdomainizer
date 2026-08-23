@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fetchCrtName = async (domain) => {
         log(`[CRT.NAME] Fetching...`, 'info');
         try {
-            const url = `https://crt.name/v1/search?apex=${domain}`;
+            const url = `http://crt.name/v1/search?apex=${domain}`;
             const response = await bgProxyFetch(url);
             if (!response.ok) throw new Error(`HTTP Error ${response.status}`);
             const text = await response.text();
